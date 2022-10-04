@@ -6,7 +6,7 @@ from config import TOKEN
 
 def cancel(update, _):
     update.message.reply_text(
-        'Как будет грустно, пиши',
+        'Если нужно будет что-то еще посчитать, пиши',
         reply_markup=ReplyKeyboardRemove()
     )
 
@@ -23,13 +23,15 @@ conv_handler = ConversationHandler(
 
         states={
             bt.first_question: [MessageHandler(Filters.regex('^(Да|Нет)$'), bt.answer_fq)],
-            bt.answer_yes:[MessageHandler(Filters.regex('^(Бот|Человек)$'), bt.choose_mod)],
-            bt.choose_num_can:[MessageHandler(Filters.text, bt.check_num_can)],
-            bt.choose_max_num:[MessageHandler(Filters.text, bt.check_max_can)],
-            bt.start_play:[MessageHandler(Filters.text, bt.main_func)],
-            bt.create_name:[MessageHandler(Filters.text, bt.check_name)],
-            bt.step_first_pl:[MessageHandler(Filters.text, bt.main_step_first)],
-            bt.step_second_pl:[MessageHandler(Filters.text, bt.main_step_second)],
+            bt.answer_yes:[MessageHandler(Filters.text, bt.choose_mod)],
+
+# bt.answer_yes:[MessageHandler(Filters.regex('^(Бот|Человек)$'), bt.choose_mod)],
+            # bt.choose_num_can:[MessageHandler(Filters.text, bt.check_num_can)],
+            # bt.choose_max_num:[MessageHandler(Filters.text, bt.check_max_can)],
+            # bt.start_play:[MessageHandler(Filters.text, bt.main_func)],
+            # bt.create_name:[MessageHandler(Filters.text, bt.check_name)],
+            # bt.step_first_pl:[MessageHandler(Filters.text, bt.main_step_first)],
+            # bt.step_second_pl:[MessageHandler(Filters.text, bt.main_step_second)],
 
 
             bt.exit_play: [MessageHandler(Filters.text, cancel)]
